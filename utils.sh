@@ -1,4 +1,4 @@
-util_compr() {
+utilcompr() {
     if [ ${1} = ${2} ]
     then # 必须换行，不换行需要在 if 条件后加 ; 号
         echo "true"
@@ -7,14 +7,14 @@ util_compr() {
     fi
 }
 
-util_upper() {
+utilupper() {
     echo ${1} | tr '[:lower:]' '[:upper:]'
 }
 
-util_lower() {
+utillower() {
     echo ${1} | tr '[:upper:]' '[:lower:]'
 }
 
-util_len() {
+utillen() {
     echo ${#1} 
 }
