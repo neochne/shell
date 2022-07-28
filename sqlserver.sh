@@ -18,7 +18,7 @@ sqlserverconnectmssql() {
 
 sqlserversql() {
     local ret=$(sqlserver_cfg)
-    eval "sqlcmd ${ret} -y 30 -Y 30 -Q \"${1}\""
+    eval "sqlcmd ${ret} -y 25 -Y 25 -Q \"${1}\""
 }
 
 sqlserverdbs() {
@@ -36,11 +36,13 @@ sqlserverdesc() {
                   t1.is_nullable [Null],
                   t1.column_default [Default],
                   t3.value [Comment],
-                  t4.value [Table Comment]
+                  t4.value [Table Comment],
+                  t5.type [Table Type]
                   FROM information_schema.columns t1
                   LEFT JOIN syscolumns t2 ON t1.column_name = t2.name
                   LEFT JOIN sys.extended_properties t3 ON t2.colid = t3.minor_id AND t3.major_id = object_id('${1}')
                   LEFT JOIN sys.extended_properties t4 ON t4.major_id = object_id('${1}') AND t4.minor_id = 0 AND t4.name = 'MS_Description'
+                  LEFT JOIN sysobjects t5 ON t5.id = object_id('${1}')
                   WHERE t1.table_name = '${1}'
                   AND t2.id = object_id('${1}')"
 }
