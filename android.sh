@@ -1,27 +1,35 @@
-androidgetapkinfo(){
+aaptdumpapk(){
     aapt dump badging ${1}
 }
 
-androidlogclear(){
+adblogclear(){
     echo "log clear..."
     adb logcat -c
     echo "done"
 }
 
-androidloge(){
+adbloge(){
     adb logcat "*:E"
 }
 
-androidlogs(){
-    log_clear
+adblogs(){
+    adblogclear
     adb logcat -s ${1}
 }
 
-androidlogebypkg() {
+adbloge4pkg() {
     adb logcat "*:E" | awk '$8~/'"${1}"'/ || $7~/Caused/ {print $0}'
 }
 
-androidbuildsharedso() {
+adbshellprocess() {
+    adb shell ps -A
+}
+
+adbshellgetprocessadj() {
+    adb shell cat /proc/$1/oom_adj 
+}
+
+cmakesharedso() {
     cmake \
     -B output/ \
     -D CMAKE_LIBRARY_OUTPUT_DIRECTORY=armeabi-v7a \
