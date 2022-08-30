@@ -21,11 +21,11 @@ adbloge4pkg() {
     adb logcat "*:E" | awk '$8~/'"${1}"'/ || $7~/Caused/ {print $0}'
 }
 
-adbshellprocess() {
-    adb shell ps -A
+adbshellprocessgrep() {
+    adb shell ps -A | grep $1
 }
 
-adbshellgetprocessadj() {
+adbshellprocessadj() {
     adb shell cat /proc/$1/oom_adj 
 }
 
