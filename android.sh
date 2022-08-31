@@ -3,7 +3,7 @@ aaptdumpapk(){
 }
 
 adblogclear(){
-    echo "log clear..."
+    echo "clearing..."
     adb logcat -c
     echo "done"
 }
@@ -13,7 +13,6 @@ adbloge(){
 }
 
 adblogs(){
-    adblogclear
     adb logcat -s ${1}
 }
 
