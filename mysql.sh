@@ -3,26 +3,28 @@ mysql_cfg() {
     local PORT=3306
     local USER=root
     local PWD=Ljx123456!
-    local DB=iron_mes
-    echo "mysql --default-character-set=utf8 -h ${HOST} -P ${PORT} -u${USER} -p${PWD} ${DB}"
+    local DB=ims_c673
+    echo "MYSQL_PWD=${PWD} mysql --default-character-set=utf8 -h ${HOST} -P ${PORT} -u${USER} ${DB}"
 }
 
 mysqlconnect() {
     local ret=$(mysql_cfg)
+    echo ${ret}
     eval ${ret}
 }
 
 mysqlsql() {
-    local ret=$(mysql_cfg)
-    eval "${ret} -e '${1} \G'"
+    local final_sql="$(mysql_cfg) -e \"${1}\""
+    # echo ${final_sql}
+    eval "${final_sql}"
 }
 
-# 查看字段注释等信息
-mysqlfileddesc() {
+# 查看指定表中所有字段注释等信息
+mysqldesctablefields() {
     mysqlsql "SHOW FULL COLUMNS FROM ${1} \G"
 }
 
 # 查看表注释、引擎等信息
-mysqltabledesc() {
+mysqldesctable() {
     mysqlsql "SHOW TABLE STATUS WHERE Name='${1}' \G"
 }
