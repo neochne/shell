@@ -18,3 +18,7 @@ utillower() {
 utillen() {
     echo ${#1} 
 }
+
+utilless() {
+    find . -name $1 | xargs less
+}
