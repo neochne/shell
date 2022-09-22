@@ -8,15 +8,11 @@ mysql_cfg() {
 }
 
 mysqlconnect() {
-    local ret=$(mysql_cfg)
-    echo ${ret}
-    eval ${ret}
+    eval $(mysql_cfg)
 }
 
 mysqlsql() {
-    local final_sql="$(mysql_cfg) -e \"${1}\""
-    # echo ${final_sql}
-    eval "${final_sql}"
+    eval "$(mysql_cfg) -e \"${1}\""
 }
 
 # 查看指定表中所有字段注释等信息
