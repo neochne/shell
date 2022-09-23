@@ -24,3 +24,7 @@ mysqldesctablefields() {
 mysqldesctable() {
     mysqlsql "SHOW TABLE STATUS WHERE Name='${1}' \G"
 }
+
+mysqlshowcreatetable() {
+    mysqlsql "SHOW CREATE TABLE ${1}"
+}
