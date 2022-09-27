@@ -21,8 +21,12 @@ mysqldesctablefields() {
 }
 
 # 查看表注释、引擎等信息
-mysqldesctable() {
+mysqldesctablemore() {
     mysqlsql "SHOW TABLE STATUS WHERE Name='${1}' \G"
+}
+
+mysqldesctable() {
+    mysqlsql "DESC $1"
 }
 
 mysqlshowcreatetable() {
