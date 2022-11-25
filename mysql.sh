@@ -32,3 +32,42 @@ mysqldesctable() {
 mysqlshowcreatetable() {
     mysqlsql "SHOW CREATE TABLE ${1}"
 }
+
+mysqlshowcustomfunctions() {
+    mysqlsql "
+    SELECT
+        ROUTINE_NAME
+       ,CREATED
+    FROM information_schema.routines 
+    WHERE ROUTINE_TYPE = 'FUNCTION'
+    AND DEFINER NOT LIKE '%mysql%'"
+}
+
+mysqlshowcustomprocedures() {
+    mysqlsql "
+    SELECT
+        ROUTINE_NAME
+       ,CREATED
+    FROM information_schema.routines 
+    WHERE ROUTINE_TYPE = 'PROCEDURE'
+    AND DEFINER NOT LIKE '%mysql%'"
+}
+
+mysqlshowcustomtrigs() {
+    mysqlsql "SHOW TRIGGERS \G"
+}
+
+mysqlshowtablesize() {
+    local SIZE_BYTE="DATA_LENGTH + INDEX_LENGTH"
+    local QUERY_SQL="SELECT
+                         TABLE_NAME 'Table'
+                        ,ROUND(($SIZE_BYTE)/1024, 2) 'Size(KB)'
+                     FROM information_schema.TABLES
+                     WHERE TABLE_SCHEMA = '$1'"
+    if [ ! $2 ]; then
+        QUERY_SQL="$QUERY_SQL ORDER BY $SIZE_BYTE DESC"
+    else
+        QUERY_SQL="$QUERY_SQL AND TABLE_NAME = '$2'"
+    fi
+    mysqlsql "$QUERY_SQL"
+}

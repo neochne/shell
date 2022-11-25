@@ -22,3 +22,7 @@ utillen() {
 utilless() {
     find . -name $1 | xargs less
 }
+
+utilgrep() {
+    grep $1 . -r -l
+}
