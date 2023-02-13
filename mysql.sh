@@ -1,18 +1,22 @@
-mysql_cfg() {
-    local HOST=192.168.1.200
+_get_cfg_connect_sql() {
+    local HOST=10.13.164.47
     local PORT=3306
     local USER=root
     local PWD=Ljx123456!
     local DB=ims_c673
-    echo "MYSQL_PWD=${PWD} mysql --default-character-set=utf8 -h ${HOST} -P ${PORT} -u${USER} ${DB}"
+    _get_connect_sql $HOST $PORT $USER $PWD $DB
 }
 
-mysqlconnect() {
-    eval $(mysql_cfg)
+_get_connect_sql() {
+    echo "MYSQL_PWD=$4 mysql --default-character-set=utf8 -h $1 -P $2 -u $3 $5"
+}
+
+mysqlconnect2() {
+    eval $(mysqlgetconnectsql $1 $2 $3 $4 $5)
 }
 
 mysqlsql() {
-    eval "$(mysql_cfg) -e \"${1}\""
+    eval "$(_get_cfg_connect_sql) -e \"${1}\""
 }
 
 # 查看指定表中所有字段注释等信息
