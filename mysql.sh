@@ -12,7 +12,7 @@ _get_connect_sql() {
 }
 
 mysqlconnect2() {
-    eval $(mysqlgetconnectsql $1 $2 $3 $4 $5)
+    eval $(_get_connect_sql $1 $2 $3 $4 $5)
 }
 
 mysqlsql() {
