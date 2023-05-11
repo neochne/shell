@@ -21,16 +21,21 @@ mysqlsql() {
 
 # 查看指定表中所有字段注释等信息
 mysqldesctablefields() {
-    mysqlsql "SHOW FULL COLUMNS FROM ${1} \G"
+    mysqlsql "SELECT COLUMN_NAME Field
+                    ,COLUMN_TYPE Type
+                    ,IS_NULLABLE 'NULL'
+                    ,COLUMN_KEY 'Key'
+                    ,COLUMN_DEFAULT 'Default'
+                    ,EXTRA Extra
+                    ,COLUMN_COMMENT Comment
+              FROM information_schema.COLUMNS
+              WHERE TABLE_NAME = '${1}'
+              AND TABLE_SCHEMA = '${2}'"
 }
 
 # 查看表注释、引擎等信息
-mysqldesctablemore() {
+mysqldesctableinfo() {
     mysqlsql "SHOW TABLE STATUS WHERE Name='${1}' \G"
-}
-
-mysqldesctable() {
-    mysqlsql "DESC $1"
 }
 
 mysqlshowcreatetable() {
@@ -42,7 +47,7 @@ mysqlshowcustomfunctions() {
     SELECT
         ROUTINE_NAME
        ,CREATED
-    FROM information_schema.routines 
+    FROM information_schema.ROUTINES 
     WHERE ROUTINE_TYPE = 'FUNCTION'
     AND DEFINER NOT LIKE '%mysql%'"
 }
@@ -52,7 +57,7 @@ mysqlshowcustomprocedures() {
     SELECT
         ROUTINE_NAME
        ,CREATED
-    FROM information_schema.routines 
+    FROM information_schema.ROUTINES 
     WHERE ROUTINE_TYPE = 'PROCEDURE'
     AND DEFINER NOT LIKE '%mysql%'"
 }

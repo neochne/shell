@@ -20,9 +20,9 @@ utillen() {
 }
 
 utilless() {
-    find . -name $1 | xargs less
+    find $1 -name $2 | xargs less
 }
 
 utilgrep() {
-    grep $1 . -r -l
+    grep -lr $1 $2
 }

@@ -1,8 +1,8 @@
 vcs_import_as_native_android_project_to_svn() {
     # 1. Please configure variables first
-    local LOCAL_PATH=~/wrk/android/as/MedicalYingDa
-    local REMOTE_URL="svn://192.168.50.4:1982/code/claim/mcms/mcms_moblie/product/trunck/mcms-android/MedicalSecond"
-    local MODULES=(app media)
+    local LOCAL_PATH=~/wrk/android/as/ScanToUHF
+    local REMOTE_URL="https://140.143.97.87/svn/C673Assembly/child/ScanToUHF"
+    local MODULES=(app)
 
     # 2. Import root files
     svn import ${LOCAL_PATH}/gradle/ ${REMOTE_URL}/gradle/ -m "import project gradle/ dir"
@@ -21,7 +21,6 @@ vcs_import_as_native_android_project_to_svn() {
     done
 
     echo "\n\nimport complete!"
-    exit 0
 }
 
 vcs_import_as_flutter_project_to_svn() {
@@ -56,5 +55,4 @@ vcs_import_as_flutter_project_to_svn() {
     svn import ${LOCAL_PATH}/ios/Podfile.lock ${REMOTE_URL}/ios/Podfile.lock -m "import ios module /Podfile.lock file"
 
     echo "\n\nimport complete!"
-    exit 0
 }
