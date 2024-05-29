@@ -1,4 +1,4 @@
-utilcompr() {
+compr() {
     if [ ${1} = ${2} ]
     then # 必须换行，不换行需要在 if 条件后加 ; 号
         echo "true"
@@ -7,22 +7,23 @@ utilcompr() {
     fi
 }
 
-utilupper() {
+upper() {
     echo ${1} | tr '[:lower:]' '[:upper:]'
 }
 
-utillower() {
+lower() {
     echo ${1} | tr '[:upper:]' '[:lower:]'
 }
 
-utillen() {
+len() {
     echo ${#1} 
 }
 
-utilless() {
-    find $1 -name $2 | xargs less
+lessx() {
+    # find $2 -name $1 | xargs less
+    find $2 -name $1 -exec less {} +
 }
 
-utilgrep() {
+grepx() {
     grep -lr $1 $2
 }
