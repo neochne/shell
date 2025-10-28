@@ -29,7 +29,7 @@ show_rust_ss_client_status() {
     fi
 }
 
-rustssclientstatus() {
+ssrustclientstatus() {
     show_rust_ss_client_status
 }
 
@@ -46,7 +46,7 @@ start_rust_ss_client() {
     echo "start rust ss client on [$pid] success! ✅ "
 }
 
-rustssclientstart() {
+ssrustclientstart() {
     start_rust_ss_client
 }
 
@@ -63,6 +63,6 @@ stop_rust_ss_client() {
     echo "stop rust ss client on [$pid] success! ✅ "
 }
 
-rustssclientstop() {
+ssrustclientstop() {
     stop_rust_ss_client
 }
