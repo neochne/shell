@@ -1,5 +1,5 @@
 RUST_SS_JSON_CFG_FILE=/Users/sharp/sdk/ss/ss_rust/cfg.json
-RUST_SS_PID_FILE=/Users/sharp/sdk/ss/ss_rust/ss_rust_client.pid
+RUST_SS_PID_FILE=/Users/sharp/wrk/ss/ss_rust/ss_rust_client.pid
 
 is_rust_ss_client_run() {
     if test -f "$RUST_SS_PID_FILE"; then
@@ -23,9 +23,9 @@ is_rust_ss_client_run() {
 show_rust_ss_client_status() {
     if is_rust_ss_client_run; then
         pid=`cat $RUST_SS_PID_FILE`
-        echo "rust ss client is already run on [$pid] ✅ "
+        echo "rust ss client is already start on [$pid] ✅ "
     else
-        echo "rust ss client is not run ❌ "
+        echo "rust ss client is not start ❌ "
     fi
 }
 
@@ -52,7 +52,7 @@ ssrustclientstart() {
 
 stop_rust_ss_client() {
     if ! is_rust_ss_client_run; then
-        echo "rust ss client is not run ❌ "
+        echo "rust ss client is not start ❌ "
         return 0
     fi
 

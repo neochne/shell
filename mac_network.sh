@@ -82,7 +82,7 @@ unset_gui_network_socks_proxy() {
     networksetup -setsocksfirewallproxystate "$NETWORK_SERVICE" off
     networksetup -setproxybypassdomains "$NETWORK_SERVICE" "Empty"
 
-    echo "stop network [${NETWORK_SERVICE}] gui socks proxy success! ✅ "
+    echo "unset network [${NETWORK_SERVICE}] gui socks proxy success! ✅ "
 }
 
 nwguissproxyoff() {
