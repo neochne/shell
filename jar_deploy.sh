@@ -43,7 +43,7 @@ jarpids() {
         return 1
     fi
 
-    #local jar_pids=(`ps -ef | grep "$1" | grep -v "grep" | awk '{print $2}'`)
+    #local jar_pids=(`ps -efal | grep "$1" | grep -v "grep" | awk '{print $2}'`)
     local jar_pids=(`pgrep -f "$1"`)
 
     echo "${jar_pids[@]}"
@@ -147,4 +147,14 @@ jarstartbgc() {
     nohup java ${JAVA_OPTS} -jar "$1" &> /dev/null &
 
     _print_jar_start_result "$1"
+}
+
+jarrestartbg() {
+    jarstop "$1"
+    jarstartbg "$1" "$2"
+}
+
+jarrestartbgc() {
+    jarstop "$1"
+    jarstartbgc "$1" "$2" "$3" "$4" "$5" "$6" "$7"
 }
