@@ -1,5 +1,5 @@
-RUST_SS_JSON_CFG_FILE=/Users/sharp/sdk/ss/ss_rust/cfg.json
-RUST_SS_PID_FILE=/Users/sharp/wrk/ss/ss_rust/ss_rust_client.pid
+RUST_SS_JSON_CFG_FILE=/Users/sharp/sdk/ss/ssrust/cfg.json
+RUST_SS_PID_FILE=/Users/sharp/wrk/ss/ssrust/ss_rust_client.pid
 
 is_rust_ss_client_run() {
     if test -f "$RUST_SS_PID_FILE"; then
@@ -40,7 +40,7 @@ start_rust_ss_client() {
         return 0
     fi
 
-    /Users/sharp/sdk/ss/ss_rust/sslocal -c $RUST_SS_JSON_CFG_FILE --daemonize-pid $RUST_SS_PID_FILE
+    /Users/sharp/sdk/ss/ssrust/bin/sslocal -c $RUST_SS_JSON_CFG_FILE --daemonize-pid $RUST_SS_PID_FILE
 
     pid=`cat $RUST_SS_PID_FILE`
     echo "start rust ss client on [$pid] success! ✅ "

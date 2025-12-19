@@ -1,4 +1,4 @@
-source ~/wrk/shell/ss_rust.sh
+source ~/wrk/shell/ssrust.sh
 source ~/wrk/shell/mac_network.sh
 
 mac_battery() {
