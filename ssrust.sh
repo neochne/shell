@@ -1,7 +1,7 @@
 RUST_SS_JSON_CFG_FILE=/Users/sharp/sdk/ss/ssrust/cfg.json
 RUST_SS_PID_FILE=/Users/sharp/wrk/ss/ssrust/ss_rust_client.pid
 
-is_rust_ss_client_run() {
+_is_rust_ss_client_run() {
     if test -f "$RUST_SS_PID_FILE"; then
         pid=`cat $RUST_SS_PID_FILE`
         ps -p $pid > /dev/null 2>&1
@@ -20,8 +20,8 @@ is_rust_ss_client_run() {
     fi
 }
 
-show_rust_ss_client_status() {
-    if is_rust_ss_client_run; then
+_show_rust_ss_client_status() {
+    if _is_rust_ss_client_run; then
         pid=`cat $RUST_SS_PID_FILE`
         echo "rust ss client is already start on [$pid] ✅ "
     else
@@ -29,12 +29,8 @@ show_rust_ss_client_status() {
     fi
 }
 
-ssrustclientstatus() {
-    show_rust_ss_client_status
-}
-
-start_rust_ss_client() {
-    if is_rust_ss_client_run; then
+_start_rust_ss_client() {
+    if _is_rust_ss_client_run; then
         pid=`cat $RUST_SS_PID_FILE`
         echo "rust ss client is already run on [$pid] ✅ "
         return 0
@@ -46,12 +42,8 @@ start_rust_ss_client() {
     echo "start rust ss client on [$pid] success! ✅ "
 }
 
-ssrustclientstart() {
-    start_rust_ss_client
-}
-
-stop_rust_ss_client() {
-    if ! is_rust_ss_client_run; then
+_stop_rust_ss_client() {
+    if ! _is_rust_ss_client_run; then
         echo "rust ss client is not start ❌ "
         return 0
     fi
@@ -63,6 +55,14 @@ stop_rust_ss_client() {
     echo "stop rust ss client on [$pid] success! ✅ "
 }
 
+ssrustclientstatus() {
+    _show_rust_ss_client_status
+}
+
+ssrustclientstart() {
+    _start_rust_ss_client
+}
+
 ssrustclientstop() {
-    stop_rust_ss_client
+    _stop_rust_ss_client
 }
