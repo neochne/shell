@@ -1,11 +1,11 @@
-source /Users/sharp/nm/s/shell/c/mac/ssrust.sh
-source /Users/sharp/nm/s/shell/c/mac/mac_network.sh
-source /Users/sharp/nm/s/shell/c/mac/utils.sh
+source /Users/sharp/nm/s/shell/p/mac/ssrust.sh
+source /Users/sharp/nm/s/shell/p/mac/mac_network.sh
+source /Users/sharp/nm/s/shell/p/mac/utils.sh
 source /usr/local/Cellar/autojump/22.5.3_3/share/autojump/autojump.zsh
-source /Users/sharp/nm/s/shell/c/vcs/svn.sh
-source /Users/sharp/nm/s/shell/c/android/android.sh
-source /Users/sharp/nm/s/shell/c/db/mysql.sh
-source /Users/sharp/nm/s/shell/c/db/sqlserver.sh
+source /Users/sharp/nm/s/shell/p/vcs/svn.sh
+source /Users/sharp/nm/s/shell/p/android/android.sh
+source /Users/sharp/nm/s/shell/p/db/mysql.sh
+source /Users/sharp/nm/s/shell/p/db/sqlserver.sh
 
 mac_battery() {
     ioreg -rn AppleSmartBattery | grep -i "MaxCapacity\|Designcapacity"
