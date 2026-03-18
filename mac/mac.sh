@@ -15,8 +15,8 @@ delete_finder_recent() {
     defaults delete com.apple.finder FXRecentFolders
 }
 
-clear_trash() {
-    rm -fr ~/.Trash/{*,.*}    
+clear_dir() {
+    rm -fr $1/{*,.*}    
 }
 
 # ################################## Command #####################################
