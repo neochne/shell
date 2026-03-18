@@ -15,6 +15,10 @@ delete_finder_recent() {
     defaults delete com.apple.finder FXRecentFolders
 }
 
+clear_trash() {
+    rm -fr ~/.Trash/{*,.*}    
+}
+
 # ################################## Command #####################################
 
 # 1) 直接执行 mac.sh ssproxyterminal {set|unset|status} 不会起作用，因为方法里涉及到了环境变量，而执行 mac.sh 会开启
